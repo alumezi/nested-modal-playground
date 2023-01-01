@@ -1,9 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import { Counter } from "./features/counter/Counter";
+import "./App.css";
+import { NestedModal } from "nested-modal";
+
+import { useState } from "react";
 
 function App() {
+  const [currentOpenedModal, setCurrentOpenedModal] = useState("first-modal");
   return (
     <div className="App">
       <header className="App-header">
@@ -12,6 +16,19 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <NestedModal
+          currentOpenedModal={currentOpenedModal}
+          setCurrentOpenedModal={setCurrentOpenedModal}
+          onClose={() => {}}
+        >
+          <div id="first-modal">
+            Modal content
+            <button onClick={() => setCurrentOpenedModal("second-modal")}>
+              asd
+            </button>
+          </div>
+          <div id="second-modal">Modal content 2</div>
+        </NestedModal>
         <span>
           <span>Learn </span>
           <a

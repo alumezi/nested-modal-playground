@@ -1,7 +1,5 @@
-import React from "react";
 import logo from "./logo.svg";
-import "./App.css";
-import NestedModal from "nested-modal";
+import { NestedModal, ModalChild } from "nested-modal";
 
 import { useState } from "react";
 
@@ -17,28 +15,72 @@ function App() {
         <NestedModal
           currentOpenedModal={currentOpenedModal}
           setCurrentOpenedModal={setCurrentOpenedModal}
-          onClose={() => {}}
         >
-          <div id="first-modal">
-            Modal content
-            <button onClick={() => setCurrentOpenedModal("second-modal")}>
-              asd
-            </button>
-          </div>
-          <div id="second-modal">
-            {" "}
+          <ModalChild
+            id="first-modal"
+            onClose={async () => {
+              if (window.confirm("Are you sure you want to close the first?")) {
+                return true;
+              }
+              return false;
+            }}
+          >
+            <>
+              ModalChild content
+              <button onClick={() => setCurrentOpenedModal("second-modal")}>
+                asd
+              </button>
+            </>
+          </ModalChild>
+          <ModalChild id="second-modal">
             <button onClick={() => setCurrentOpenedModal("10th-modal")}>
               asd
             </button>
-          </div>
-          <div>Modal content 2</div>
-          <div id="4th-modal">Modal content 2</div>
-          <div id="5th-modal">Modal content 2</div>
-          <div id="6th-modal">Modal content 2</div>
-          <div id="7th-modal">Modal content 2</div>
-          <div id="8th-modal">Modal content 2</div>
-          <div id="9th-modal">Modal content 2</div>
-          <div id="10th-modal">Modal content 2</div>
+          </ModalChild>
+          <ModalChild id="3d-modal">ModalChild content 2</ModalChild>
+          <ModalChild id="4th-modal">ModalChild content 2</ModalChild>
+          <ModalChild id="5th-modal">ModalChild content 2</ModalChild>
+          <ModalChild id="6th-modal">ModalChild content 2</ModalChild>
+          <ModalChild id="7th-modal">ModalChild content 2</ModalChild>
+          <ModalChild
+            id="8th-modal"
+            onClose={async () => {
+              if (
+                window.confirm("Are you sure you want to close the 8th modal?")
+              ) {
+                return true;
+              }
+              return false;
+            }}
+          >
+            ModalChild content 2
+          </ModalChild>
+          <ModalChild
+            id="9th-modal"
+            onClose={async () => {
+              if (
+                window.confirm("Are you sure you want to close the 9th modal?")
+              ) {
+                return true;
+              }
+              return false;
+            }}
+          >
+            ModalChild content 2
+          </ModalChild>
+          <ModalChild
+            id="10th-modal"
+            onClose={async () => {
+              if (
+                window.confirm("Are you sure you want to close the last modal?")
+              ) {
+                return true;
+              }
+              return false;
+            }}
+          >
+            ModalChild content 2222
+          </ModalChild>
         </NestedModal>
         <span>
           <span>Learn </span>
